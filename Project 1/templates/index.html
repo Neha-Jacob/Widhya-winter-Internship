@@ -3,18 +3,112 @@
     <Head>
         <Title>Review</Title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <style>
+            body {
+              background-image: url('https://i.pinimg.com/originals/87/48/89/874889e02218cba446fb0bb6566dfa00.jpg');
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              background-size: cover;
+            }
+
+  h1.heading{
+    color: black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-style: outset;
+    text-align: center;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+  }
+
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color:gray;
+  }
+
+  input[type=submit] {
+    max-width: 20%;
+    background-color: cornflowerblue;
+    color: black;
+    
+    margin: 8px 8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: medium;
+    padding: 12px 20px;
+    float: right;
+  }
+  
+  
+  input[type=submit]:hover {
+    transform: scale(1.05);
+    background-color: lightseagreen;
+  }
+  .container {
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 20px;
+  }
+  
+  .col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    font-size: x-large;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+
+  .col-75:hover{
+    transform: scale(1.02);
+    
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+            </style>
     </Head>
-    <Body>
+    <body >
+        
+        
         <h1 class="heading">Customer Review Form</h1>
         <div class="container">
             <form action="">
                 <div class="row">
                     <div class="col-25">
-                        <label for="name">Name</label><br>
+                        <label for="name">Name:</label><br>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="name" name="name" placeholder="Your name"><br><br>
+                        <input type="text" id="name" name="name" placeholder="Enter your name *"><br><br>
                     </div>
                 </div>
                 <div class="row">
@@ -22,15 +116,15 @@
                         <label for="item">Item:</label><br>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="item" name="item" placeholder="Item being reviewed"><br><br>
+                        <input type="text" id="item" name="item" placeholder="Enter the item being reviewed *"><br><br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-25">
-                        <label for="comment">Review</label><br>
+                        <label for="comment">Review:</label><br>
                     </div>
                     <div class="col-75">
-                        <textarea id="comment" name="comment" placeholder="Review" style="height: 200px">Write Review here</textarea><br><br>
+                        <textarea id="comment" name="comment" placeholder="Enter review *" style="height: 200px"></textarea><br><br>
                     </div>
                 </div>
                 <div class="row">
@@ -38,5 +132,25 @@
                 </div>
             </form>
         </div>
-    </Body>
+
+        <section>
+            <div class="reviews">
+                {% for one in reviewlist %}
+                    <div class="eachreview">
+                        <div class="comment">
+                            {{ one.review }}
+                        </div>
+                        <div class="name">
+                            {{ one.name }}
+                        </div>
+                        <div class="item">
+                            {{ one.item }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+         
+    </body>
 </HTML>
